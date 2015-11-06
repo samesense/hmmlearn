@@ -20,6 +20,22 @@ def normalize(a, axis=None):
     """
     a += np.finfo(float).eps
 
+    # eleminate transitions backward
+    # [1-1 1-2 1-3]
+    # [2-1 2-2 2-3]
+    # [3-1 3-2 3-3]
+
+    # [1-1 1-2 XX]
+    # [XX  2-2 2-3]
+    # [XX  XX  3-3]
+
+    a[0][2] = 0.0
+
+    a[1][0] = 0.0
+
+    a[2][0] = 0.0
+    a[2][1] = 0.0
+
     a_sum = a.sum(axis)
     if axis and a.ndim > 1:
         # Make sure we don't divide by zero.
@@ -29,6 +45,13 @@ def normalize(a, axis=None):
         a_sum.shape = shape
 
     a /= a_sum
+
+    a[0][2] = np.finfo(float).eps
+
+    a[1][0] = np.finfo(float).eps
+
+    a[2][0] = np.finfo(float).eps
+    a[2][1] = np.finfo(float).eps
 
     # TODO: should return nothing, since the operation is inplace.
     return a

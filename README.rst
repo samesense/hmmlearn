@@ -7,6 +7,9 @@ hmmlearn |travis| |appveyor|
 .. |appveyor| image:: https://ci.appveyor.com/api/projects/status/3c70msixtdvvae20/branch/master?svg=true
    :target: https://ci.appveyor.com/project/superbobry/hmmlearn/branch/master
 
+I've modififed hmmlearn so that transitions to previous states and
+between non-adjacent states are not allowed. -perry
+   
 hmmlearn is a set of algorithms for **unsupervised** learning and inference of
 Hidden Markov Models. For supervised learning learning of HMMs and similar models
 see `seqlearn <https://github.com/larsmans/seqlearn>`_.
